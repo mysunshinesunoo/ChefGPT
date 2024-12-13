@@ -107,6 +107,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (3.1.5)
+    dotenv-rails (3.1.5)
+      dotenv (= 3.1.5)
+      railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.0)
     event_stream_parser (1.0.0)
@@ -330,6 +334,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9, >= 4.9.4)
+  dotenv-rails
   importmap-rails
   jbuilder
   pg (~> 1.1)
