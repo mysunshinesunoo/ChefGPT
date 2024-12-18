@@ -63,4 +63,4 @@ gem 'ransack', '~> 4.2', '>= 4.2.1'
 
 gem 'rails_live_reload', '~> 0.3.6'
 
-gem 'dotenv-rails', '~> 3.1', '>= 3.1.4'
+gem 'dotenv', groups: [:development, :test]
