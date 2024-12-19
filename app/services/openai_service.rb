@@ -1,6 +1,9 @@
 require 'openai'
+require 'json-schema'
 
 class OpenaiService
+  include Prompts::RecipePrompts
+
   def initialize
     @client = OpenAI::Client.new(access_token: ENV['OPENAI_API_KEY'])
   end
@@ -10,7 +13,7 @@ class OpenaiService
       messages = [
         { 
           role: "system", 
-          content: "You are a professional chef assistant. Return your response as a JSON object with a 'recipes' array containing exactly 3 recipes. Each recipe should have: 'name', 'type', 'description', 'steps' (array), 'nutrition_rating' (1-5), 'prep_time', and 'image' (empty string)."
+          content: RECIPE_SYSTEM_PROMPT
         },
         {
           role: "user",
@@ -23,14 +26,16 @@ class OpenaiService
       response = @client.chat(
         parameters: {
           messages: messages,
-          model: ENV.fetch('OPENAI_MODEL', 'gpt-4o-mini'),
+          model: ENV.fetch('OPENAI_MODEL', 'gpt-3.5-turbo'),
           response_format: { type: "json_object" },
           temperature: 0.7
         }
       )
 
       if response.dig("choices", 0, "message", "content")
-        JSON.parse(response["choices"][0]["message"]["content"])
+        json_response = JSON.parse(response["choices"][0]["message"]["content"])
+        validate_response!(json_response)
+        json_response
       else
         raise "No content in response"
       end
@@ -40,9 +45,18 @@ class OpenaiService
     rescue JSON::ParserError => e
       Rails.logger.error "JSON parsing error: #{e.message}"
       raise "Failed to parse recipe response"
+    rescue JSON::Schema::ValidationError => e
+      Rails.logger.error "Schema validation error: #{e.message}"
+      raise "Invalid recipe format received"
     rescue StandardError => e
       Rails.logger.error "Unexpected error: #{e.message}"
       raise "An unexpected error occurred: #{e.message}"
     end
+  end
+
+  private
+
+  def validate_response!(response)
+    JSON::Validator.validate!(RECIPE_JSON_SCHEMA, response)
   end
 end
