@@ -56,11 +56,14 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# gemfiles:
+gem "devise", "~> 4.9", ">= 4.9.4"
 
-gem 'devise', '~> 4.9', '>= 4.9.4'
+gem "ransack", "~> 4.2", ">= 4.2.1"
 
-gem 'ransack', '~> 4.2', '>= 4.2.1'
+gem "rails_live_reload", "~> 0.3.6"
 
 gem 'ruby-openai'
 
 gem 'dotenv-rails'
+gem "dotenv", groups: [:development, :test]
