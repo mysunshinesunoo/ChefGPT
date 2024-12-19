@@ -1,0 +1,24 @@
+<div>
+  <h1>Generate New Recipes</h1>
+
+  <div>
+    <h2>Your Available Ingredients:</h2>
+    <div>
+      <% @ingredients.each do |name, quantity| %>
+        <span><%= quantity %> <%= name %></span>
+      <% end %>
+    </div>
+  </div>
+
+  <%= form_with(model: @recipe, local: true) do |f| %>
+    <div>
+      <%= f.label :prompt, "What would you like to cook?" %>
+      <%= f.text_field :prompt, placeholder: "e.g., Make me a healthy dinner" %>
+    </div>
+
+    <div>
+      <%= f.submit "Generate Recipes" %>
+      <%= link_to "Back to Recipes", recipes_path %>
+    </div>
+  <% end %>
+</div> 
