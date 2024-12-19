@@ -63,7 +63,6 @@ gem "ransack", "~> 4.2", ">= 4.2.1"
 
 gem "rails_live_reload", "~> 0.3.6"
 
-gem 'ruby-openai'
+gem "ruby-openai"
 
-gem 'dotenv-rails'
-gem "dotenv", groups: [:development, :test]
+gem "dotenv-rails"
