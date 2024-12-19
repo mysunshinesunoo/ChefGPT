@@ -1,1 +1,35 @@
- 
+<div>
+  <div>
+    <h1>Recipes</h1>
+    <%= link_to 'Generate New Recipes', new_recipe_path %>
+  </div>
+
+  <div>
+    <% @recipes.each do |recipe| %>
+      <div>
+        <div>
+          <h2><%= recipe.name %></h2>
+          <p><%= recipe.description %></p>
+          
+          <div>
+            <span><%= recipe.recipe_type %></span>
+            <span>Health Rating: <%= recipe.nutrition_rating %>/5</span>
+          </div>
+
+          <div>
+            <h3>Steps:</h3>
+            <ol>
+              <% recipe.steps.each do |step| %>
+                <li><%= step %></li>
+              <% end %>
+            </ol>
+          </div>
+
+          <div>
+            Prep time: <%= recipe.prep_time %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
