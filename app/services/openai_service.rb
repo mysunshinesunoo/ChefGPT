@@ -43,7 +43,7 @@ class OpenaiService
       response = @client.chat(
         parameters: {
           messages: messages,
-          model: ENV.fetch('OPENAI_MODEL', 'gpt-3.5-turbo'),
+          model: ENV.fetch('OPENAI_MODEL', 'gpt-4o-mini'),
           response_format: { type: "json_object" },
           temperature: 0.7
         }
