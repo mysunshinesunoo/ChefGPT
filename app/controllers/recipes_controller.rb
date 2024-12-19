@@ -7,14 +7,28 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @ingredients = current_user.ingredients.pluck(:name, :quantity)
+    # @ingredients = current_user.ingredients.pluck(:name, :quantity)
+
+    #temp mock ingredients
+    @ingredients = [
+      ["chicken", "2 lbs"],
+      ["rice", "1 cup"],
+      ["carrots", "3 pcs"]
+    ]
   end
 
   def create
     service = OpenaiService.new
-    user_ingredients = current_user.ingredients.pluck(:name, :quantity).map do |name, quantity|
-      "#{quantity} #{name}"
-    end
+    # user_ingredients = current_user.ingredients.pluck(:name, :quantity).map do |name, quantity|
+    #   "#{quantity} #{name}"
+    # end
+
+    #temp mock ingredients
+    user_ingredients = [
+      "2 lbs chicken",
+      "1 cup rice",
+      "3 pcs carrots"
+    ]
     
     recipes_data = service.generate_recipe(recipe_params[:prompt], user_ingredients)
     
