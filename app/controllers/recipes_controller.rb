@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
     @recipes = recipes_data["recipes"].map do |recipe_data|
       current_user.recipes.create!(
         name: recipe_data["name"],
-        recipe_type: recipe_data["type"],
+        recipe_type: recipe_data["recipe_type"],
         description: recipe_data["description"],
         steps: recipe_data["steps"],
         nutrition_rating: recipe_data["nutrition_rating"],

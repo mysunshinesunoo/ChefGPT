@@ -6,7 +6,7 @@ class OpenaiService
 
     Your task is to generate exactly 3 unique and well-structured recipes based on the ingredients provided by the user and their prompt. Each recipe must include:
     - name: A short and descriptive name for the recipe
-    - type: The category (e.g., "Breakfast", "Lunch", "Dinner", "Snack")
+    - recipe_type: The category (e.g., "Breakfast", "Lunch", "Dinner", "Snack")
     - description: A brief overview of the recipe
     - steps: Step-by-step instructions as an array of strings
     - nutrition_rating: A number between 1 and 5 (5 being healthiest)

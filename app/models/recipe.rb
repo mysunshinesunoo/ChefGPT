@@ -7,6 +7,7 @@ class Recipe < ApplicationRecord
             numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
   validates :prep_time, presence: true
 
-  # If steps is stored as a string, serialize it as an array
-  serialize :steps, Array
+  serialize :steps, coder: YAML
+
+  belongs_to :user
 end
