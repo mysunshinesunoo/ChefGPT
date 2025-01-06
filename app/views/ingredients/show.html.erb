@@ -1,0 +1,6 @@
+<h1><%= @ingredient.name %></h1>
+
+<p><strong>Quantity:</strong> <%= @ingredient.quantity %></p>
+
+<%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
+<%= link_to 'Back to List', ingredients_path %>
