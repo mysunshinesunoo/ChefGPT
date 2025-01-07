@@ -1,13 +1,17 @@
 <div>
   <div>
     <h1>Recipes</h1>
-    <%= link_to 'Generate New Recipes', recipes_path %>
+    <%= link_to 'Generate New Recipes', new_recipe_path %>
   </div>
 
   <div>
     <% @recipes.each do |recipe| %>
       <div>
         <div>
+          <% if recipe.image.present? %>
+            <%= image_tag recipe.image, alt: recipe.name, class: "recipe-image" %>
+          <% end %>
+          
           <h2><%= recipe.name %></h2>
           <p><%= recipe.description %></p>
           
