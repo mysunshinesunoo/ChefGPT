@@ -1,8 +1,9 @@
 class IngredientsController < ApplicationController
+	before_action :authenticate_user!
 	before_action :set_ingredient, except: [:index, :new, :create]
 
 	def index
-		@ingredients = Ingredient.all
+		@ingredients = current_user.ingredients
 	end
 
 	def show
@@ -10,15 +11,15 @@ class IngredientsController < ApplicationController
 	end
 
 	def new
-		@ingredient = Ingredient.new
+		@ingredient = current_user.ingredients.build
 	end
 
 	def create
-		@ingredient = Ingredient.new(ingredient_params)
+		@ingredient = current_user.ingredients.build(ingredient_params)
 		if @ingredient.save
-			redirect_to ingredients_path, notice: 'Ingredient was successfully created.'
+			redirect_to @ingredient, notice: 'Ingredient was successfully created.'
 		else
-			render :new
+			render :new, status: :unprocessable_entity
 		end
 	end
 
