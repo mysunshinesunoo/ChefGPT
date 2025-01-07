@@ -33,13 +33,17 @@ class RecipesController < ApplicationController
     recipes_data = service.generate_recipe(recipe_params[:prompt], user_ingredients)
     
     @recipes = recipes_data["recipes"].map do |recipe_data|
+      # Generate image for each recipe
+      image_path = service.generate_image(recipe_data["name"], recipe_data["description"])
+      
       current_user.recipes.create!(
         name: recipe_data["name"],
         recipe_type: recipe_data["recipe_type"],
         description: recipe_data["description"],
         steps: recipe_data["steps"],
         nutrition_rating: recipe_data["nutrition_rating"],
-        prep_time: recipe_data["prep_time"]
+        prep_time: recipe_data["prep_time"],
+        image: image_path
       )
     end
 

@@ -65,4 +65,65 @@ class OpenaiService
       raise "An unexpected error occurred: #{e.message}"
     end
   end
+
+  def generate_image(recipe_name, recipe_description)
+    begin
+      response = @client.images.generate(
+        parameters: {
+          model: ENV.fetch('DALLE_MODEL', 'dall-e-3'),
+          prompt: generate_image_prompt(recipe_name, recipe_description),
+          n: 1,
+          size: "1024x1024",
+          quality: "standard",
+          response_format: "b64_json"
+        }
+      )
+
+      if response.dig("data", 0, "b64_json")
+        save_image(response["data"][0]["b64_json"], recipe_name)
+      else
+        raise "No image data in response"
+      end
+    rescue OpenAI::Error => e
+      Rails.logger.error "DALL-E API error: #{e.message}"
+      use_placeholder_image(recipe_name)
+    rescue StandardError => e
+      Rails.logger.error "Image generation error: #{e.message}"
+      use_placeholder_image(recipe_name)
+    end
+  end
+
+  private
+
+  def generate_image_prompt(name, description)
+    "A professional, appetizing photo of #{name}. #{description}. Food photography style, well-lit, high resolution."
+  end
+
+  def save_image(base64_data, recipe_name)
+    # Create uploads directory if it doesn't exist
+    uploads_dir = Rails.root.join('public', 'uploads', 'recipes')
+    FileUtils.mkdir_p(uploads_dir) unless Dir.exist?(uploads_dir)
+
+    # Generate unique filename
+    filename = "#{recipe_name.parameterize}-#{SecureRandom.hex(8)}.png"
+    filepath = uploads_dir.join(filename)
+
+    # Decode and save the image
+    File.open(filepath, 'wb') do |file|
+      file.write(Base64.decode64(base64_data))
+    end
+
+    # Return the relative path for database storage
+    "/uploads/recipes/#{filename}"
+  end
+
+  def use_placeholder_image(recipe_name)
+    # Copy placeholder image and return its path
+    placeholder_source = Rails.root.join('app', 'assets', 'images', 'placeholder-recipe.png')
+    filename = "#{recipe_name.parameterize}-placeholder.png"
+    destination = Rails.root.join('public', 'uploads', 'recipes', filename)
+    
+    FileUtils.cp(placeholder_source, destination)
+    "/uploads/recipes/#{filename}"
+  end
 end
