@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-	before_action :set_ingredient, except: [:index, :create]
+	before_action :set_ingredient, except: [:index, :new, :create]
 
 	def index
 		@ingredients = Ingredient.all
