@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
     # @ingredients = current_user.ingredients.pluck(:name, :quantity)
 
-    #temp mock ingredients
+    #temp mock ingredients/ REPLACE with user_ingredients
     @ingredients = [
       ["chicken", "2 lbs"],
       ["rice", "1 cup"],
@@ -23,7 +23,7 @@ class RecipesController < ApplicationController
     #   "#{quantity} #{name}"
     # end
 
-    #temp mock ingredients
+    #temp mock ingredients/ REPLACE with user_ingredients
     user_ingredients = [
       "2 lbs chicken",
       "1 cup rice",
