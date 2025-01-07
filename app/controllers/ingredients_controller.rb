@@ -1,42 +1,53 @@
 class IngredientsController < ApplicationController
-	before_action :set_ingredient, except: [:index, :create]
+	before_action :authenticate_user!
+	before_action :set_ingredient, except: [:index, :new, :create]
 
 	def index
-		@ingredients = Ingredient.all
+		@ingredients = current_user.ingredients
 	end
 
-  def show end
+	def show
+		# @ingredient already set by before_action
+	end
 
 	def new
-    @ingredient = Ingredient.new
-  end
+		@ingredient = current_user.ingredients.build
+	end
 
-  def create
-    @ingredient = Ingredient.new(ingredient_params)
+	def create
+		@ingredient = current_user.ingredients.build(ingredient_params)
 		if @ingredient.save
-      redirect_to ingredients_path, notice: 'Ingredient was successfully created.'
-    else
-      render :new
-    end
+			redirect_to @ingredient, notice: 'Ingredient was successfully created.'
+		else
+			render :new, status: :unprocessable_entity
+		end
 	end
 
 	def edit
-    @ingredient = Ingredient.find(params[:id])
+		# @ingredient already set by before_action
+	end
+
+	def update
+		if @ingredient.update(ingredient_params)
+			redirect_to ingredients_path, notice: 'Ingredient was successfully updated.'
+		else
+			render :edit
+		end
 	end
 
 	def destroy
-    @ingredient.destroy
-    redirect_to ingredients_path, notice: 'Ingredient was successfully destroyed.'
+		@ingredient.destroy
+		redirect_to ingredients_path, notice: 'Ingredient was successfully destroyed.'
 	end
 
 	private
-  
+
 	def ingredient_params
-    params.require(:ingredient).permit(:name, :quantity)
-  end
+		params.require(:ingredient).permit(:name, :quantity)
+	end
 
 	def set_ingredient
-    @ingredient = Ingredient.find(params[:id])
-  end
+		@ingredient = Ingredient.find(params[:id])
+	end
 
 end
