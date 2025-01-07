@@ -96,7 +96,7 @@ class OpenaiService
   private
 
   def generate_image_prompt(name, description)
-    "A professional, appetizing photo of #{name}. #{description}. Food photography style, well-lit, high resolution."
+    "Professional food photography of #{name}. Shot from a 45-degree angle with soft natural lighting from the left. The dish is beautifully plated on a neutral ceramic plate against a light textured background. Shallow depth of field with the main elements in sharp focus. Garnished and styled with minimal, complementary props. #{description}. The photo has rich colors, subtle shadows, and a clean, modern aesthetic typical of high-end restaurant photography."
   end
 
   def save_image(base64_data, recipe_name)
