@@ -66,3 +66,8 @@ gem "rails_live_reload", "~> 0.3.6"
 gem "ruby-openai"
 
 gem "dotenv-rails"
+
+gem "tailwindcss-rails"
+
+# pin to tailwindcss version 3.4.13
+gem "tailwindcss-ruby", "3.4.13"
