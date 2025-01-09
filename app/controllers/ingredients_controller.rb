@@ -6,9 +6,14 @@ class IngredientsController < ApplicationController
 		@ingredients = current_user.ingredients
 	end
 
+<<<<<<< HEAD
 	def show
 		# @ingredient already set by before_action
 	end
+=======
+  def show 
+  end
+>>>>>>> dce5913b36f398dcdd2856307cc9fbe16fc33cbb
 
 	def new
 		@ingredient = current_user.ingredients.build
