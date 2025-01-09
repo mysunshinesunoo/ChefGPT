@@ -1,5 +1,16 @@
-<h1>New Ingredient</h1>
+<div class="container mx-auto px-4 py-8 bg-[#FDEDD6]/10">
+  <!-- Header Section -->
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-[#AE150D]">New Ingredient</h1>
+  </div>
 
-<%= render 'form', ingredient: @ingredient %>
+  <!-- Ingredient Form -->
+  <div class="bg-white rounded-lg shadow-md p-6 border border-[#FDD365]/20">
+    <%= render 'form', ingredient: @ingredient %>
+  </div>
 
-<%= link_to 'Back', ingredients_path %>
+  <!-- Back Link -->
+  <div class="mt-4">
+    <%= link_to 'Back', ingredients_path, class: "bg-[#3D5926] hover:bg-[#AE150D] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
+  </div>
+</div>
