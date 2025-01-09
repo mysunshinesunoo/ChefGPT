@@ -1,6 +1,19 @@
-<h1><%= @ingredient.name %></h1>
+<div class="container mx-auto px-4 py-8 bg-[#FDEDD6]/10">
+  <!-- Header Section -->
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-[#AE150D]"><%= @ingredient.name %></h1>
+  </div>
 
-<p><strong>Quantity:</strong> <%= @ingredient.quantity %></p>
+  <!-- Ingredient Details -->
+  <div class="bg-white rounded-lg shadow-md p-6 border border-[#FDD365]/20 mb-6">
+    <p class="text-lg text-gray-700">
+      <strong class="font-semibold text-[#3D5926]">Quantity:</strong> <%= @ingredient.quantity %>
+    </p>
+  </div>
 
-<%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
-<%= link_to 'Back to List', ingredients_path %>
+  <!-- Actions -->
+  <div class="flex gap-4">
+    <%= link_to 'Edit', edit_ingredient_path(@ingredient), class: "bg-[#3D5926] hover:bg-[#AE150D] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
+    <%= link_to 'Back to List', ingredients_path, class: "bg-[#FDD365] hover:bg-[#FC8F00] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
+  </div>
+</div>

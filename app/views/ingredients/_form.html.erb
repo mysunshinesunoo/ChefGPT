@@ -1,9 +1,10 @@
-<%= form_with(model: ingredient, local: true) do |form| %>
+<%= form_with(model: ingredient, local: true, class: "space-y-6") do |form| %>
   <% if ingredient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
-
-      <ul>
+    <div id="error_explanation" class="bg-[#FDEDD6]/10 border border-[#AE150D] text-[#AE150D] p-4 rounded-lg mb-6">
+      <h2 class="text-lg font-bold mb-2">
+        <%= pluralize(ingredient.errors.count, "error") %> prohibited this ingredient from being saved:
+      </h2>
+      <ul class="list-disc list-inside space-y-1">
         <% ingredient.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -11,17 +12,20 @@
     </div>
   <% end %>
 
+  <!-- Name Field -->
   <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :name, "Ingredient Name", class: "block text-[#3D5926] font-semibold mb-2" %>
+    <%= form.text_field :name, class: "w-50 px-4 py-2 border border-[#FDD365]/20 rounded-lg shadow-sm focus:ring-[#3D5926] focus:border-[#3D5926]" %>
   </div>
 
+  <!-- Quantity Field -->
   <div>
-    <%= form.label :quantity %>
-    <%= form.text_field :quantity %>
+    <%= form.label :quantity, "Quantity", class: "block text-[#3D5926] font-semibold mb-2" %>
+    <%= form.text_field :quantity, class: "w-50 px-4 py-2 border border-[#FDD365]/20 rounded-lg shadow-sm focus:ring-[#3D5926] focus:border-[#3D5926]" %>
   </div>
 
+  <!-- Submit Button -->
   <div>
-    <%= form.submit %>
+    <%= form.submit "Save Ingredient", class: "bg-[#3D5926] hover:bg-[#AE150D] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
   </div>
 <% end %>
