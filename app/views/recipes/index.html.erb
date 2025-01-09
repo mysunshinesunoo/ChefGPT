@@ -8,49 +8,52 @@
   <!-- Recipe Grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <% @recipes.each do |recipe| %>
-      <div class="bg-white rounded-lg border border-[#FDD365]/20 shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-        <!-- Recipe Image -->
-        <div class="aspect-w-16 aspect-h-9">
-          <% if recipe.image.present? %>
-            <%= image_tag recipe.image, alt: recipe.name, class: "w-full h-48 object-cover" %>
-          <% else %>
-            <div class="w-full h-48 bg-[#FDEDD6] flex items-center justify-center">
-              <span class="text-[#3D5926]">No image available</span>
+      <%= link_to recipe_path(recipe), 
+          class: "block transform transition duration-300 hover:scale-[1.02] hover:shadow-xl" do %>
+        <div class="bg-white rounded-lg border border-[#FDD365]/20 shadow-md overflow-hidden">
+          <!-- Recipe Image -->
+          <div class="aspect-w-16 aspect-h-9">
+            <% if recipe.image.present? %>
+              <%= image_tag recipe.image, alt: recipe.name, class: "w-full h-48 object-cover" %>
+            <% else %>
+              <div class="w-full h-48 bg-[#FDEDD6] flex items-center justify-center">
+                <span class="text-[#3D5926]">No image available</span>
+              </div>
+            <% end %>
+          </div>
+
+          <!-- Recipe Content -->
+          <div class="p-4">
+            <h2 class="text-xl font-bold text-[#3D5926] mb-2"><%= recipe.name %></h2>
+            <p class="text-gray-600 mb-4 line-clamp-2"><%= recipe.description %></p>
+
+            <!-- Tags Section -->
+            <div class="flex gap-2 mb-4">
+              <span class="px-3 py-1 bg-[#FC8F00]/10 text-[#FC8F00] text-sm rounded-full">
+                <%= recipe.recipe_type %>
+              </span>
+              <span class="px-3 py-1 bg-[#3D5926]/10 text-[#3D5926] text-sm rounded-full">
+                Health Rating: <%= recipe.nutrition_rating %>/5
+              </span>
             </div>
-          <% end %>
-        </div>
 
-        <!-- Recipe Content -->
-        <div class="p-4">
-          <h2 class="text-xl font-bold text-[#3D5926] mb-2"><%= recipe.name %></h2>
-          <p class="text-gray-600 mb-4 line-clamp-2"><%= recipe.description %></p>
+            <!-- Steps Section -->
+            <div class="mb-4">
+              <h3 class="font-semibold text-[#AE150D] mb-2">Steps:</h3>
+              <ol class="list-decimal list-inside text-gray-700 space-y-1">
+                <% recipe.steps.each do |step| %>
+                  <li class="line-clamp-1"><%= step %></li>
+                <% end %>
+              </ol>
+            </div>
 
-          <!-- Tags Section -->
-          <div class="flex gap-2 mb-4">
-            <span class="px-3 py-1 bg-[#FC8F00]/10 text-[#FC8F00] text-sm rounded-full">
-              <%= recipe.recipe_type %>
-            </span>
-            <span class="px-3 py-1 bg-[#3D5926]/10 text-[#3D5926] text-sm rounded-full">
-              Health Rating: <%= recipe.nutrition_rating %>/5
-            </span>
-          </div>
-
-          <!-- Steps Section -->
-          <div class="mb-4">
-            <h3 class="font-semibold text-[#AE150D] mb-2">Steps:</h3>
-            <ol class="list-decimal list-inside text-gray-700 space-y-1">
-              <% recipe.steps.each do |step| %>
-                <li class="line-clamp-1"><%= step %></li>
-              <% end %>
-            </ol>
-          </div>
-
-          <!-- Prep Time -->
-          <div class="text-sm text-[#3D5926]">
-            Prep time: <%= recipe.prep_time %>
+            <!-- Prep Time -->
+            <div class="text-sm text-[#3D5926]">
+              Prep time: <%= recipe.prep_time %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
