@@ -67,13 +67,6 @@ gem "ruby-openai"
 
 gem "dotenv-rails"
 
-<<<<<<< HEAD
 gem "tailwindcss-rails", "~> 3.1"
 
 gem "tailwindcss-ruby"
-=======
-gem "tailwindcss-rails"
-
-# pin to tailwindcss version 3.4.13
-gem "tailwindcss-ruby", "3.4.13"
->>>>>>> dce5913b36f398dcdd2856307cc9fbe16fc33cbb
