@@ -1,0 +1,8 @@
+<h1>Favorited Recipes</h1>
+
+<% @favorite_recipes.each do |recipe| %>
+  <div>
+    <h2><%= recipe.name %></h2>
+    <p><%= recipe.description %></p>
+  </div>
+<% end %>

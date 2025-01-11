@@ -42,6 +42,10 @@ class RecipesController < ApplicationController
   def show
     # @recipe already set by before_action
   end
+  
+  def favorites
+    @favorite_recipes = current_user.recipes.where(is_favorite: true)
+  end
 
   private
 
