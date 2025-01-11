@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_recipe, only: [:show]
 
   def index
     @recipes = current_user.recipes
@@ -38,6 +39,10 @@ class RecipesController < ApplicationController
     redirect_to new_recipe_path, alert: "Error: #{e.message}"
   end
 
+  def show
+    # @recipe already set by before_action
+  end
+  
   def favorites
     @favorite_recipes = current_user.recipes.where(is_favorite: true)
   end
@@ -46,5 +51,11 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:prompt)
+  end
+
+  def set_recipe
+    @recipe = current_user.recipes.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to recipes_path, alert: 'Recipe not found.'
   end
 end 

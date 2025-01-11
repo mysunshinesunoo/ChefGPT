@@ -11,14 +11,37 @@ class OpenaiService
     - steps: Step-by-step instructions as an array of strings
     - nutrition_rating: A number between 1 and 5 (5 being healthiest)
     - prep_time: Preparation time as a string (e.g., "30 minutes")
+   - ingredients_used: An array of strings listing exactly which provided ingredients are used in this recipe
+
+    STRICT INGREDIENT REQUIREMENTS:
+    - You MUST ONLY use ingredients from the provided list
+    - DO NOT suggest or include any ingredients that weren't explicitly listed
+    - If you cannot create a recipe using only the provided ingredients, return an error message in the JSON
+    - Salt and pepper are the only assumed basic ingredients
+    - Each recipe must use at least 2 of the provided ingredients
+    - List exactly which provided ingredients are used in each recipe
 
     Requirements:
-    - Generate exactly 3 recipes
+    - Generate exactly 3 recipes (or fewer if not enough ingredients)
     - Each recipe must be distinct and creative
-    - Use provided ingredients when possible
+    - Use ONLY provided ingredients
     - Follow user's dietary preferences and requirements
     - Avoid duplication of ingredients or steps
-    - Return response as a valid JSON object
+    - Return response as a valid JSON object with format:
+    {
+      "recipes": [
+        {
+          "name": "string",
+          "recipe_type": "string",
+          "description": "string",
+          "steps": ["string"],
+          "nutrition_rating": number,
+          "prep_time": "string",
+          "ingredients_used": ["string"]
+        }
+      ],
+      "unused_ingredients": ["string"]
+    }
   PROMPT
 
   def initialize

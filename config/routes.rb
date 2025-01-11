@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :ingredients
-  resources :recipes, only: [:index, :create, :new] do
+
+  resources :recipes, only: [:index, :show, :create, :new] do
     collection do
       get :favorites
     end

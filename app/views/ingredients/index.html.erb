@@ -1,26 +1,36 @@
-<h1>Ingredients</h1>
+<div class="container mx-auto px-4 py-8 bg-[#FDEDD6]/10">
+  <!-- Header Section -->
+  <div class="mb-6 flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-[#AE150D]">Ingredients</h1>
+    <%= link_to 'New Ingredient', new_ingredient_path, class: "bg-[#3D5926] hover:bg-[#AE150D] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
+  </div>
 
-<%= link_to 'New Ingredient', new_ingredient_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Quantity</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @ingredients.each do |ingredient| %>
-      <tr>
-        <td><%= ingredient.name %></td>
-        <td><%= ingredient.quantity %></td>
-        <td>
-          <%= link_to 'Show', ingredient_path(ingredient) %> |
-          <%= link_to 'Edit', edit_ingredient_path(ingredient) %> |
-          <%= link_to 'Delete', ingredient_path(ingredient), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <!-- Ingredients Table -->
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-[#FDD365]/20 rounded-lg shadow-md">
+      <thead class="bg-[#FC8F00]/10">
+        <tr>
+          <th class="px-6 py-3 text-left text-sm font-bold text-[#3D5926] border-b">Name</th>
+          <th class="px-6 py-3 text-left text-sm font-bold text-[#3D5926] border-b">Quantity</th>
+          <th class="px-6 py-3 text-left text-sm font-bold text-[#3D5926] border-b">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ingredients.each do |ingredient| %>
+          <tr class="hover:bg-[#FDEDD6]/20">
+            <td class="px-6 py-4 text-sm text-gray-700 border-b"><%= ingredient.name %></td>
+            <td class="px-6 py-4 text-sm text-gray-700 border-b"><%= ingredient.quantity %></td>
+            <td class="px-6 py-4 text-sm text-gray-700 border-b">
+              <%= link_to 'Show', ingredient_path(ingredient), class: "text-[#3D5926] hover:text-[#AE150D] font-semibold transition duration-300" %>
+              <span class="mx-2">|</span>
+              <%= link_to 'Edit', edit_ingredient_path(ingredient), class: "text-[#3D5926] hover:text-[#AE150D] font-semibold transition duration-300" %>
+              <span class="mx-2">|</span>
+              <%= link_to 'Delete', ingredient_path(ingredient), 
+                  data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "text-[#AE150D] hover:text-[#FC8F00] font-semibold transition duration-300" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
