@@ -1,0 +1,54 @@
+<div class="container mx-auto px-4 py-8 bg-[#FDEDD6]/10">
+  <!-- Navigation -->
+  <div class="mb-8">
+    <%= link_to '← Back to Recipes', recipes_path, 
+        class: "text-[#3D5926] hover:text-[#AE150D] font-semibold transition duration-300" %>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <!-- Recipe Header -->
+    <div class="relative">
+      <% if @recipe.image.present? %>
+        <%= image_tag @recipe.image, alt: @recipe.name, class: "w-full h-96 object-cover" %>
+      <% else %>
+        <div class="w-full h-96 bg-[#FDEDD6] flex items-center justify-center">
+          <span class="text-[#3D5926]">No image available</span>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Recipe Content -->
+    <div class="p-6">
+      <h1 class="text-4xl font-bold text-[#3D5926] mb-4"><%= @recipe.name %></h1>
+      
+      <!-- Tags -->
+      <div class="flex gap-3 mb-6">
+        <span class="px-4 py-2 bg-[#FC8F00]/10 text-[#FC8F00] rounded-full">
+          <%= @recipe.recipe_type %>
+        </span>
+        <span class="px-4 py-2 bg-[#3D5926]/10 text-[#3D5926] rounded-full">
+          Health Rating: <%= @recipe.nutrition_rating %>/5
+        </span>
+        <span class="px-4 py-2 bg-[#AE150D]/10 text-[#AE150D] rounded-full">
+          Prep time: <%= @recipe.prep_time %>
+        </span>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold text-[#AE150D] mb-3">Description</h2>
+        <p class="text-gray-700 leading-relaxed"><%= @recipe.description %></p>
+      </div>
+
+      <!-- Steps -->
+      <div>
+        <h2 class="text-2xl font-semibold text-[#AE150D] mb-3">Instructions</h2>
+        <ol class="list-decimal list-inside space-y-4">
+          <% @recipe.steps.each do |step| %>
+            <li class="text-gray-700 leading-relaxed pl-4"><%= step %></li>
+          <% end %>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div> 

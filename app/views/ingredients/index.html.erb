@@ -25,7 +25,8 @@
               <span class="mx-2">|</span>
               <%= link_to 'Edit', edit_ingredient_path(ingredient), class: "text-[#3D5926] hover:text-[#AE150D] font-semibold transition duration-300" %>
               <span class="mx-2">|</span>
-              <%= link_to 'Delete', ingredient_path(ingredient), method: :delete, data: { confirm: 'Are you sure?' }, class: "text-[#AE150D] hover:text-[#FC8F00] font-semibold transition duration-300" %>
+              <%= link_to 'Delete', ingredient_path(ingredient), 
+                  data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "text-[#AE150D] hover:text-[#FC8F00] font-semibold transition duration-300" %>
             </td>
           </tr>
         <% end %>
