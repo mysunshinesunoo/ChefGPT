@@ -38,6 +38,10 @@ class RecipesController < ApplicationController
     redirect_to new_recipe_path, alert: "Error: #{e.message}"
   end
 
+  def favorites
+    @favorite_recipes = current_user.recipes.where(is_favorite: true)
+  end
+
   private
 
   def recipe_params
