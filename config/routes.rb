@@ -22,4 +22,10 @@ Rails.application.routes.draw do
       get :favorites
     end
   end
+
+  resources :recipes do
+    member do
+      patch :toggle_favorite
+    end
+  end
 end

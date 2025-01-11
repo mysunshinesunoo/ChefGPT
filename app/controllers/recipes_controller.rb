@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_recipe, only: [:show]
+  before_action :set_recipe, only: [:show, :toggle_favorite]
 
   def index
     @recipes = current_user.recipes
@@ -45,6 +45,14 @@ class RecipesController < ApplicationController
   
   def favorites
     @favorite_recipes = current_user.recipes.where(is_favorite: true)
+  end
+
+  def toggle_favorite
+    @recipe = current_user.recipes.find(params[:id])
+    @recipe.toggle!(:is_favorite)
+    head :ok
+  rescue
+    head :not_found
   end
 
   private
