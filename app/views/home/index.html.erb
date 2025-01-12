@@ -1,4 +1,58 @@
-<h1>ChefGPT</h1>
+<div class="container mx-auto px-4 py-8">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold text-[#AE150D]">Dashboard</h1>
     <% if user_signed_in? %>
-      <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'logout-button' %>
+      <%= button_to 'Logout', destroy_user_session_path, method: :delete, 
+          class: 'px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700' %>
     <% end %>
+  </div>
+
+  <% if user_signed_in? %>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Recipe Stats Card -->
+      <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-gray-800">My Recipes</h3>
+          <svg class="w-5 h-5 text-[#AE150D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+          </svg>
+        </div>
+        <div class="text-5xl font-bold text-[#AE150D] mb-2"><%= current_user.recipes.count %></div>
+        <p class="text-gray-600 mb-4">Total Recipes Created</p>
+        <%= link_to 'View All Recipes →', recipes_path, class: 'text-[#AE150D] hover:text-[#8E1109]' %>
+      </div>
+
+      <!-- Favorites Stats Card -->
+      <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-gray-800">Favorites</h3>
+          <svg class="w-5 h-5 text-[#AE150D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </div>
+        <div class="text-5xl font-bold text-[#AE150D] mb-2"><%= current_user.recipes.where(is_favorite: true).count %></div>
+        <p class="text-gray-600 mb-4">Saved Favorites</p>
+        <%= link_to 'View Favorites →', favorites_recipes_path, class: 'text-[#AE150D] hover:text-[#8E1109]' %>
+      </div>
+
+      <!-- Ingredients Stats Card -->
+      <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-gray-800">My Ingredients</h3>
+          <svg class="w-5 h-5 text-[#AE150D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+          </svg>
+        </div>
+        <div class="text-5xl font-bold text-[#AE150D] mb-2"><%= current_user.ingredients.count %></div>
+        <p class="text-gray-600 mb-4">Available Ingredients</p>
+        <%= link_to 'Manage Ingredients →', ingredients_path, class: 'text-[#AE150D] hover:text-[#8E1109]' %>
+      </div>
+    </div>
+  <% else %>
+    <div class="text-center py-12">
+      <h2 class="text-2xl font-semibold text-gray-700 mb-4">Welcome to ChefGPT</h2>
+      <p class="text-gray-600 mb-6">Please sign in to view your dashboard</p>
+      <%= link_to 'Sign In', new_user_session_path, class: 'px-6 py-3 bg-[#AE150D] text-white rounded-lg hover:bg-[#8E1109]' %>
+    </div>
+  <% end %>
+</div>
