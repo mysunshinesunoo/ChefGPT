@@ -1,4 +1,4 @@
-<div class="container mx-auto px-4 py-8 bg-[#FDEDD6]/10">
+<div class="container mx-auto px-4 py-8">
   <!-- Header Section -->
   <div class="mb-8 flex justify-between items-center">
     <h1 class="text-3xl font-bold text-[#AE150D]">Recipes</h1>
@@ -8,7 +8,7 @@
   <!-- Recipe Grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <% @recipes.each do |recipe| %>
-      <div class="recipe-card-container">
+      <div class="recipe-card-container transition transform hover:scale-105 duration-300">
         <%= render 'shared/favorite_button', recipe: recipe %>
         <!-- Recipe Card -->
         <%= link_to recipe_path(recipe), class: "block" do %>
@@ -31,10 +31,19 @@
 
               <!-- Tags Section -->
               <div class="flex gap-2 mb-4">
-                <span class="px-3 py-1 bg-[#FC8F00]/10 text-[#FC8F00] text-sm rounded-full">
+                <!-- Recipe Type Tag -->
+                <span class="flex items-center gap-2 px-3 py-1 bg-[#FC8F00]/20 text-[#FC8F00] text-sm rounded-full shadow-sm">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 7a4 4 0 0 1 8 0v3a4 4 0 0 0 8 0V7a4 4 0 0 0-8 0v3a4 4 0 0 1-8 0V7Z"></path>
+                  </svg>
                   <%= recipe.recipe_type %>
                 </span>
-                <span class="px-3 py-1 bg-[#3D5926]/10 text-[#3D5926] text-sm rounded-full">
+
+                <!-- Health Rating Tag with Stars -->
+                <span class="flex items-center gap-2 px-3 py-1 bg-[#3D5926]/20 text-[#3D5926] text-sm rounded-full shadow-sm">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.588 4.885a1 1 0 00.95.69h5.11c.969 0 1.371 1.24.588 1.81l-4.115 2.987a1 1 0 00-.364 1.118l1.588 4.885c.3.921-.755 1.688-1.54 1.118L10 15.347l-4.115 2.987c-.785.57-1.84-.197-1.54-1.118l1.588-4.885a1 1 0 00-.364-1.118L1.454 9.312c-.783-.57-.38-1.81.588-1.81h5.11a1 1 0 00.95-.69l1.588-4.885z"></path>
+                  </svg>
                   Health Rating: <%= recipe.nutrition_rating %>/5
                 </span>
               </div>

@@ -1,17 +1,17 @@
-<div class="container mx-auto px-4 py-8 bg-[#FDEDD6]/10">
+<div class="container mx-auto px-4 py-8">
   <!-- Header Section -->
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-[#AE150D]">Favorite Recipes</h1>
   </div>
 
   <!-- Recipe Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
     <% @favorite_recipes.each do |recipe| %>
-      <div class="recipe-card-container">
+      <div class="recipe-card-container transform transition-transform duration-300 hover:scale-105">
         <%= render 'shared/favorite_button', recipe: recipe %>
         
         <%= link_to recipe_path(recipe), class: "block" do %>
-          <div class="bg-white rounded-lg border border-[#FDD365]/20 shadow-md overflow-hidden">
+          <div class="bg-white rounded-lg border border-[#FDD365]/20 shadow-md overflow-hidden ">
             <!-- Recipe Image -->
             <div class="relative aspect-w-16 aspect-h-9">
               <% if recipe.image.present? %>
