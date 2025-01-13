@@ -124,7 +124,7 @@ GEM
       net-http (>= 0.5.0)
     ffi (1.17.1-arm64-darwin)
     ffi (1.17.1-x86_64-darwin)
-    ffi (1.17.1-x86_64-linux-gnu)
+    ffi (1.17.1-x86_64-linux)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)

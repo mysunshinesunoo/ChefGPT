@@ -1,12 +1,12 @@
 <div class="fixed top-0 left-0 h-screen w-64 bg-white shadow-lg flex flex-col">
   <!-- App Logo -->
-  <div class="p-6 border-b">
+  <div class="p-6">
     <h1 class="text-2xl font-bold text-[#AE150D]">ChefGPT</h1>
   </div>
 
   <!-- Main Navigation -->
 
-  <nav class="flex-1 px-3 space-y-3 mb-auto">
+  <nav class="flex-1 px-3 space-y-2 mb-auto">
     <!-- Home -->
     <%= link_to root_path, class: "flex items-center px-3 py-2 rounded-lg text-gray-700 hover:bg-[#FDEDD6] #{current_page?(root_path) ? 'bg-[#FDEDD6] text-[#AE150D]' : ''}" do %>
       <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
