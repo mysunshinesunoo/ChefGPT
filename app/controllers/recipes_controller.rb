@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :toggle_favorite]
 
   def index
-    @recipes = current_user.recipes
+   @recipes = current_user.recipes.order(created_at: :desc)
   end
 
   def new
