@@ -1,32 +1,39 @@
 <div class="container mx-auto px-4 py-8">
   <!-- Header Section -->
-  <div class="mb-8 flex justify-between items-center">
-    <h1 class="text-3xl font-bold text-[#AE150D]">Generate New Recipes</h1>
-    <%= link_to "Back to Recipes", recipes_path, class: "bg-[#3D5926] hover:bg-[#AE150D] text-white font-semibold py-2 px-4 rounded-lg transition duration-300" %>
-  </div>
-
-  <!-- Ingredients Section -->
-  <div class="mb-8">
-    <h2 class="text-xl font-semibold text-[#3D5926] mb-4">Your Available Ingredients:</h2>
-    <div class="flex flex-wrap gap-2">
-      <% @ingredients.each do |name, quantity| %>
-        <span class="px-3 py-1 bg-[#FDD365]/10 text-[#FC8F00] text-sm rounded-lg shadow-sm">
-          <%= quantity %> <%= name %>
-        </span>
-      <% end %>
-    </div>
+  <div class="mb-12">
+    <%= link_to 'Back to Recipes', recipes_path, class: "bg-[#3D5926] hover:bg-[#AE150D] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
   </div>
 
   <!-- Recipe Generation Form -->
-  <%= form_with(model: @recipe, local: true, class: "space-y-6") do |f| %>
-    <div>
-      <%= f.label :prompt, "What would you like to cook?", class: "block text-[#3D5926] font-semibold mb-2" %>
-      <%= f.text_field :prompt, placeholder: "e.g., Make me a healthy dinner", class: "w-half px-4 py-2 border border-[#FDD365]/20 rounded-lg shadow-sm focus:ring-[#3D5926] focus:border-[#3D5926]" %>
-    </div>
+  <div class="flex justify-center items-center">
+    <div class="bg-white rounded-lg shadow-md p-6 border border-[#FDD365]/20 w-full max-w-lg">
+      <h1 class="text-3xl font-bold text-[#AE150D] mb-6">Generate New Recipes</h1>
 
-    <div class="flex gap-4">
-      <%= f.submit "Generate Recipes", class: "bg-[#3D5926] hover:bg-[#AE150D] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
-      <%= link_to "Back to Recipes", recipes_path, class: "bg-[#FDD365] hover:bg-[#FC8F00] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
+      <!-- Ingredients Section -->
+      <div class="mb-8">
+        <h2 class="text-xl font-semibold text-[#3D5926] mb-4 flex justify-between items-center">
+          Your Available Ingredients:
+        </h2>
+        <div class="flex flex-wrap gap-2">
+          <% @ingredients.each do |name, quantity| %>
+            <span class="px-3 py-1 bg-[#FDD365]/10 text-[#FC8F00] text-sm rounded-lg shadow-sm">
+              <%= quantity %> <%= name %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Recipe Generation Form -->
+      <%= form_with(model: @recipe, local: true, class: "space-y-6") do |f| %>
+        <div>
+          <%= f.label :prompt, "What would you like to cook?", class: "block text-[#3D5926] font-semibold mb-2" %>
+          <%= f.text_field :prompt, placeholder: "e.g., Make me a healthy dinner", class: "w-full px-4 py-2 border border-[#FDD365]/20 rounded-lg shadow-sm focus:ring-[#3D5926] focus:border-[#3D5926]"%>
+        </div>
+
+        <div class="flex justify-center gap-4">
+          <%= f.submit "Generate Recipes", class: "bg-[#3D5926] hover:bg-[#AE150D] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>

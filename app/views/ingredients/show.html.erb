@@ -1,19 +1,25 @@
-<div class="container mx-auto px-4 py-8 ">
+<div class="container mx-auto px-4 py-8">
   <!-- Header Section -->
-  <div class="mb-6">
-    <h1 class="text-3xl font-bold text-[#AE150D]"><%= @ingredient.name %></h1>
+  <div class="mb-6"></div>
+
+  <!-- Back Link -->
+  <div class="mb-12">
+    <%= link_to 'Back to List', ingredients_path, class: "bg-[#3D5926] hover:bg-[#AE150D] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
   </div>
 
   <!-- Ingredient Details -->
-  <div class="bg-white rounded-lg shadow-md p-6 border border-[#FDD365]/20 mb-6">
-    <p class="text-lg text-gray-700">
-      <strong class="font-semibold text-[#3D5926]">Quantity:</strong> <%= @ingredient.quantity %>
-    </p>
+  <div class="flex justify-center items-center">
+    <div class="bg-white rounded-lg shadow-md p-12 border border-[#FDD365]/20 w-full max-w-md text-center">
+      <h1 class="text-3xl font-bold text-[#AE150D]"><%= @ingredient.name %></h1>
+      <p class="text-lg text-gray-700 mt-4">
+        <strong class="font-semibold text-[#3D5926]">Quantity:</strong>
+        <%= @ingredient.quantity.presence || "Not specified" %>
+      </p>
+    </div>
   </div>
 
   <!-- Actions -->
-  <div class="flex gap-4">
+  <div class="flex justify-center items-center gap-4 mt-6">
     <%= link_to 'Edit', edit_ingredient_path(@ingredient), class: "bg-[#3D5926] hover:bg-[#AE150D] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
-    <%= link_to 'Back to List', ingredients_path, class: "bg-[#FDD365] hover:bg-[#FC8F00] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
   </div>
 </div>

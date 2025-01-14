@@ -1,16 +1,19 @@
-<div class="container mx-auto px-4 py-8 ">
+<div class="container mx-auto px-4 py-8">
   <!-- Header Section -->
   <div class="mb-6">
-    <h1 class="text-3xl font-bold text-[#AE150D]">Edit Ingredient</h1>
-  </div>
-
-  <!-- Ingredient Form -->
-  <div class="bg-white rounded-lg shadow-md p-6 border border-[#FDD365]/20">
-    <%= render 'form', ingredient: @ingredient %>
+    
   </div>
 
   <!-- Back Link -->
-  <div class="mt-4">
+  <div class="mb-12">
     <%= link_to 'Back', ingredients_path, class: "bg-[#3D5926] hover:bg-[#AE150D] text-white font-semibold py-2 px-6 rounded-lg transition duration-300" %>
+  </div>
+
+  <!-- Ingredient Form -->
+  <div class="flex justify-center items-center">
+    <div class="bg-white rounded-lg shadow-md p-6 border border-[#FDD365]/20 w-full max-w-md">
+      <h1 class="text-3xl font-bold text-[#AE150D]">Edit Ingredient</h1>
+      <%= render 'form', ingredient: @ingredient %>
+    </div>
   </div>
 </div>
