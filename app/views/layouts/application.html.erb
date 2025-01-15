@@ -19,6 +19,7 @@
   </head>
 
   <body class="bg-[#FDEDD6]/10">
+    <%= render 'shared/flash_messages' %>
     <% if user_signed_in? %>
       <div class="">
         <!-- Sidebar -->
@@ -26,12 +27,6 @@
         <!-- Main Content -->
         <div class="container mx-auto">
           <main class="p-8">
-            <% if notice %>
-              <div class="mb-4 p-4 bg-green-100 text-green-700 rounded-lg"><%= notice %></div>
-            <% end %>
-            <% if alert %>
-              <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg"><%= alert %></div>
-            <% end %>
             <%= yield %>
           </main>
         </div>

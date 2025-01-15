@@ -1,0 +1,6 @@
+<%# app/views/shared/_flash_messages.html.erb %>
+<% flash.each do |type, message| %>
+  <div class="flash-message <%= type %> animate-flash">
+    <%= message %>
+  </div>
+<% end %>
