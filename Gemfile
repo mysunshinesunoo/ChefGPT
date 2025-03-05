@@ -59,7 +59,7 @@ end
 # gemfiles:
 gem "devise", "~> 4.9", ">= 4.9.4"
 
-gem "ransack", "~> 4.2", ">= 4.2.1"
+gem "ransack", "~> 4.3"
 
 gem "rails_live_reload", "~> 0.3.6"
 
